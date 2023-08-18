@@ -1,0 +1,23 @@
+{
+  "name": "qrrate",
+  "version": "2.0.0",
+  "description": "This is a web application that can convert any type of file into a video and then can be uploaded to Youtube and therefore geting unlimited cloud storage. This is the second official revision of the qrrate application previously created.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "K-Daksh",
+  "license": "ISC",
+  "dependencies": {
+    "adm-zip": "^0.5.10",
+    "chokidar": "^3.5.3",
+    "express": "^4.18.2",
+    "express-fileupload": "^1.4.0",
+    "ffmpeg": "^0.0.4",
+    "fluent-ffmpeg": "^2.1.2",
+    "fs": "^0.0.1-security",
+    "jimp": "^0.22.10",
+    "progress": "^2.0.3"
+  },
+  "devDependencies": {}
+}
