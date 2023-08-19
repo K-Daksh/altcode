@@ -21,20 +21,21 @@ Altcode is an open-source web application built in Node.js, designed to transfor
 __Say goodbye to storage limitations and embrace the future of file management with Altcode.__
 
 
-__Note:__ 'The deployed site does not have good enough processing abilities due to the platform used, please do not try to process files of size more than 50MBs'
+__Note:__ 'The deployed site does not have good enough processing abilities due to the platform used, please do not try to process files of size more than 50MBs, you can use the application on your machine for larger files'
 
  __Altcode-Qrrate__
 
 ![](https://github.com/K-Daksh/altcode/blob/main/forReadme/altcode-qrrate-gif.gif)
 
 
-__Demo Video Output created for 20MB file, this gif is slowed to 0.009x for frames to be visible, the real length of the video was 0 seconds__
+__Demo Video Output created for 30MB file__
 
-![](https://github.com/K-Daksh/altcode/blob/main/forReadme/binary-bits.gif)
+[![Video](https://img.youtube.com/vi/QUd6wXLgHII/maxresdefault.jpg)](https://www.youtube.com/watch?v=QUd6wXLgHII)
 
 
 
-#### A demo video uploaded online https://youtu.be/dCdm5q5_GtQ
+#### A demo video uploaded online https://www.youtube.com/watch?v=QUd6wXLgHII
+
 `Warning: Project Usage Disclaimer`
 >
 > 
