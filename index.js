@@ -1,18 +1,15 @@
 const Jimp = require("jimp");
 const fs = require("fs");
-const width = 1080;
+const width = 1280;
 const height = 720;
-const frameRate = 60;
-const quality = 20;
-const colorTolerance = 170;
+const frameRate = 24;
+const quality = 25;
+const colorTolerance = 180;
 const inputFile = `${__dirname}/zip/converted.zip`;
 const ffmpeg = require("fluent-ffmpeg");
 const AdmZip = require("adm-zip");
 const { resolve } = require("path");
 const { rejects } = require("assert");
-// const { resolve } = require("path");
-// const { rejects } = require("assert");
-
 const createZipArchive = async () => {
   return new Promise((resolve, rejects) => {
     const zip = new AdmZip();
@@ -56,7 +53,7 @@ const fileToImages = async () => {
     var stream = fs.createReadStream(inputFile);
     var imageNumber = 1;
     var processing = false;
-    const byteSize = height * width * 0.125;
+    const byteSize = ((height * width) / 16) * 0.125;
     stream.on("readable", function () {
       if (processing) {
         return;
@@ -70,25 +67,61 @@ const fileToImages = async () => {
         let ind = 0;
         const image = new Jimp(width, height);
 
-        for (let y = 0; y < height; y++) {
-          for (let x = 0; x < width; x++) {
+        for (let y = 0; y < height / 4; y++) {
+          for (let x = 0; x < width / 4; x++) {
             let color;
 
             if (ind < lengthOfBinary) {
               if (binaryString[ind] === "1") {
-                color = 255;
+                color = 0x000000ff;
               } else {
-                color = 0xffffff;
+                color = 0xffffffff;
               }
-              image.setPixelColor(color, x, y);
+              image.setPixelColor(color, x * 4, y * 4);
+              image.setPixelColor(color, x * 4, y * 4 + 1);
+              image.setPixelColor(color, x * 4, y * 4 + 2);
+              image.setPixelColor(color, x * 4, y * 4 + 3);
+              //-->
+              image.setPixelColor(color, x * 4 + 1, y * 4);
+              image.setPixelColor(color, x * 4 + 1, y * 4 + 1);
+              image.setPixelColor(color, x * 4 + 1, y * 4 + 2);
+              image.setPixelColor(color, x * 4 + 1, y * 4 + 3);
+              //-->
+              image.setPixelColor(color, x * 4 + 2, y * 4);
+              image.setPixelColor(color, x * 4 + 2, y * 4 + 1);
+              image.setPixelColor(color, x * 4 + 2, y * 4 + 2);
+              image.setPixelColor(color, x * 4 + 2, y * 4 + 3);
+              //-->
+              image.setPixelColor(color, x * 4 + 3, y * 4);
+              image.setPixelColor(color, x * 4 + 3, y * 4 + 1);
+              image.setPixelColor(color, x * 4 + 3, y * 4 + 2);
+              image.setPixelColor(color, x * 4 + 3, y * 4 + 3);
+
               ind++;
             } else {
               color = 0xff0000ff;
-              image.setPixelColor(color, x, y);
+              image.setPixelColor(color, x * 4, y * 4);
+              image.setPixelColor(color, x * 4, y * 4 + 1);
+              image.setPixelColor(color, x * 4, y * 4 + 2);
+              image.setPixelColor(color, x * 4, y * 4 + 3);
+              //-->
+              image.setPixelColor(color, x * 4 + 1, y * 4);
+              image.setPixelColor(color, x * 4 + 1, y * 4 + 1);
+              image.setPixelColor(color, x * 4 + 1, y * 4 + 2);
+              image.setPixelColor(color, x * 4 + 1, y * 4 + 3);
+              //-->
+              image.setPixelColor(color, x * 4 + 2, y * 4);
+              image.setPixelColor(color, x * 4 + 2, y * 4 + 1);
+              image.setPixelColor(color, x * 4 + 2, y * 4 + 2);
+              image.setPixelColor(color, x * 4 + 2, y * 4 + 3);
+              //-->
+              image.setPixelColor(color, x * 4 + 3, y * 4);
+              image.setPixelColor(color, x * 4 + 3, y * 4 + 1);
+              image.setPixelColor(color, x * 4 + 3, y * 4 + 2);
+              image.setPixelColor(color, x * 4 + 3, y * 4 + 3);
             }
           }
         }
-
         const outputFilePath = `${__dirname}/images/output${imageNumber}.png`;
         image.write(outputFilePath, (err) => {
           if (err) {
@@ -111,21 +144,58 @@ const fileToImages = async () => {
         let ind = 0;
         const image = new Jimp(width, height);
 
-        for (let y = 0; y < height; y++) {
-          for (let x = 0; x < width; x++) {
+        for (let y = 0; y < height / 4; y++) {
+          for (let x = 0; x < width / 4; x++) {
             let color;
 
             if (ind < lengthOfBinary) {
               if (binaryString[ind] === "1") {
-                color = 255;
+                color = 0x000000ff;
               } else {
-                color = 0xffffff;
+                color = 0xffffffff;
               }
-              image.setPixelColor(color, x, y);
+              image.setPixelColor(color, x * 4, y * 4);
+              image.setPixelColor(color, x * 4, y * 4 + 1);
+              image.setPixelColor(color, x * 4, y * 4 + 2);
+              image.setPixelColor(color, x * 4, y * 4 + 3);
+              //-->
+              image.setPixelColor(color, x * 4 + 1, y * 4);
+              image.setPixelColor(color, x * 4 + 1, y * 4 + 1);
+              image.setPixelColor(color, x * 4 + 1, y * 4 + 2);
+              image.setPixelColor(color, x * 4 + 1, y * 4 + 3);
+              //-->
+              image.setPixelColor(color, x * 4 + 2, y * 4);
+              image.setPixelColor(color, x * 4 + 2, y * 4 + 1);
+              image.setPixelColor(color, x * 4 + 2, y * 4 + 2);
+              image.setPixelColor(color, x * 4 + 2, y * 4 + 3);
+              //-->
+              image.setPixelColor(color, x * 4 + 3, y * 4);
+              image.setPixelColor(color, x * 4 + 3, y * 4 + 1);
+              image.setPixelColor(color, x * 4 + 3, y * 4 + 2);
+              image.setPixelColor(color, x * 4 + 3, y * 4 + 3);
+
               ind++;
             } else {
               color = 0xff0000ff;
-              image.setPixelColor(color, x, y);
+              image.setPixelColor(color, x * 4, y * 4);
+              image.setPixelColor(color, x * 4, y * 4 + 1);
+              image.setPixelColor(color, x * 4, y * 4 + 2);
+              image.setPixelColor(color, x * 4, y * 4 + 3);
+              //-->
+              image.setPixelColor(color, x * 4 + 1, y * 4);
+              image.setPixelColor(color, x * 4 + 1, y * 4 + 1);
+              image.setPixelColor(color, x * 4 + 1, y * 4 + 2);
+              image.setPixelColor(color, x * 4 + 1, y * 4 + 3);
+              //-->
+              image.setPixelColor(color, x * 4 + 2, y * 4);
+              image.setPixelColor(color, x * 4 + 2, y * 4 + 1);
+              image.setPixelColor(color, x * 4 + 2, y * 4 + 2);
+              image.setPixelColor(color, x * 4 + 2, y * 4 + 3);
+              //-->
+              image.setPixelColor(color, x * 4 + 3, y * 4);
+              image.setPixelColor(color, x * 4 + 3, y * 4 + 1);
+              image.setPixelColor(color, x * 4 + 3, y * 4 + 2);
+              image.setPixelColor(color, x * 4 + 3, y * 4 + 3);
             }
           }
         }
@@ -169,11 +239,11 @@ const imagesToFile = async (imageFolder, colorTolerance) => {
     try {
       const image = await Jimp.read(imagePath);
       let binaryString = "";
-      for (let y = 0; y < image.bitmap.height; y++) {
-        for (let x = 0; x < image.bitmap.width; x++) {
+      for (let y = 0; y < image.bitmap.height; y += 4) {
+        for (let x = 0; x < image.bitmap.width; x += 4) {
           const color = image.getPixelColor(x, y);
-          const isNearWhite = isColorNear(color, 0xffffff, colorTolerance);
-          const isNearBlack = isColorNear(color, 0x000000, colorTolerance);
+          const isNearWhite = isColorNear(color, 0xffffffff, colorTolerance);
+          const isNearBlack = isColorNear(color, 0x000000ff, colorTolerance);
 
           if (isNearBlack) {
             binaryString += "1";
@@ -236,6 +306,7 @@ const createVideoFromImages = (
       .outputOptions([
         "-s " + videoWidth + "x" + videoHeight,
         "-c:v " + videoCodec,
+        "-b:v 1M",
         "-crf " + videoQuality,
       ])
       .output(outputVideoPath)
@@ -286,9 +357,6 @@ const extractFramesFromVideo = (
       .run();
   });
 };
-const clearDirOutputFile = () => {
-  fs.unlinkSync(`${__dirname}/output/output.zip`);
-};
 const clearUploadDir = () => {
   return new Promise((resolve, rejects) => {
     const removeUpload = fs.readdirSync(`${__dirname}/upload`);
@@ -323,7 +391,7 @@ const clearDirStepTwoMid = () => {
     resolve();
   });
 };
-exports.convertFileToVideo = async () => {
+const convertFileToVideo = async () => {
   await createZipArchive();
   await clearUploadDir();
   await fileToImages()
@@ -344,7 +412,7 @@ exports.convertFileToVideo = async () => {
     });
   await clearDirStepOne();
 };
-exports.convertVideoToFile = async () => {
+const convertVideoToFile = async () => {
   await extractFramesFromVideo(
     `${__dirname}/uploadedVideo/outputVideo.mp4`,
     `${__dirname}/frames`,
@@ -359,12 +427,9 @@ exports.convertVideoToFile = async () => {
       console.error("Frame extraction failed:", error);
     });
 };
-
-//
-//For testing on local host only
 const processTest = async () => {
   await convertFileToVideo();
   await convertVideoToFile();
 };
+//to test the working of this code just replace video folder name in file to video function to uploadedVideo and uncomment the function processTest given below.
 //processTest();
-//clearDirOutputFile();
