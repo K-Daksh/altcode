@@ -12,7 +12,7 @@ Altcode is an open-source web application built in Node.js, designed to transfor
 
 #### Here's how Altcode works its ✨Magic ✨
 
-- File Conversion: Altcode converts your files into video format, with a compression ratio of just __5.4x__ the original size. This minimal increase ensures efficient storage while maintaining a high success rate during the conversion process, reducing the risk of corruption.
+- File Conversion: Altcode converts your files into video format, with a compression ratio of just __3.2x__ the original size. This minimal increase ensures efficient storage while maintaining a high success rate during the conversion process, reducing the risk of corruption.
 
 - Reliability: Altcode is the result of continuous refinement, now in its impressive __4th edition__. This ensures the highest quality and reliability when converting your files into videos and back.
 
