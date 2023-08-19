@@ -372,7 +372,10 @@ const clearDirStepOne = () => {
     imageDir.forEach((element) => {
       fs.unlinkSync(`${__dirname}/images/${element}`);
     });
-    fs.unlinkSync(`${__dirname}/zip/converted.zip`);
+    if (fs.readFileSync(`${__dirname}/zip/converted.zip`)) {
+      fs.unlinkSync(`${__dirname}/zip/converted.zip`);
+    }
+
     resolve();
   });
 };
@@ -391,7 +394,7 @@ const clearDirStepTwoMid = () => {
     resolve();
   });
 };
-const convertFileToVideo = async () => {
+exports.convertFileToVideo = async () => {
   await createZipArchive();
   await clearUploadDir();
   await fileToImages()
@@ -412,7 +415,7 @@ const convertFileToVideo = async () => {
     });
   await clearDirStepOne();
 };
-const convertVideoToFile = async () => {
+exports.convertVideoToFile = async () => {
   await extractFramesFromVideo(
     `${__dirname}/uploadedVideo/outputVideo.mp4`,
     `${__dirname}/frames`,
